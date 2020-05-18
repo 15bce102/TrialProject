@@ -6,40 +6,42 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.viewpager.widget.PagerAdapter
-import com.google.android.material.button.MaterialButton
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.card.MaterialCardView
+import java.util.*
 
-class Adapter(private val models: List<Model>, private val context: Context) : PagerAdapter() {
-    private var layoutInflater: LayoutInflater? = null
-    override fun getCount(): Int {
-        return models.size
+
+// The adapter class which
+// extends RecyclerView Adapter
+class Adapter(var context: Context, data: ArrayList<Model>) : RecyclerView.Adapter<Adapter.MyViewHolder>() {
+    var data: List<Model> = data
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val itemView: View = LayoutInflater.from(parent.context).inflate(R.layout.item, parent,
+                false)
+        // return itemView
+        return MyViewHolder(itemView)
     }
 
-    override fun isViewFromObject(view: View, `object`: Any): Boolean {
-        return view == `object`
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val all = data[position]
+        holder.name.text = all.name
+        holder.avatar.setImageResource(all.avatar)
+        holder.status.setImageResource(all.status)
+        holder.send.setImageResource(all.send)
     }
 
-    override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        layoutInflater = LayoutInflater.from(context)
-        val view =  layoutInflater!!.inflate(R.layout.item, container, false)
-        val imageView: AppCompatImageView
-        val title: AppCompatTextView
-        val desc: AppCompatTextView
-        val amount: MaterialButton
-        imageView = view.findViewById(R.id.image)
-        title = view.findViewById(R.id.title)
-        desc = view.findViewById(R.id.desc)
-        amount = view.findViewById(R.id.button)
-        imageView.setImageResource(models[position].image)
-        title.text = models[position].title
-        desc.text = models[position].desc
-        amount.text = models[position].coins
-        container.addView(view, 0)
-        return view
+    override fun getItemCount(): Int {
+        return data.size
     }
 
-    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-        container.removeView(`object` as View)
+    inner class MyViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+        var mCardView: MaterialCardView = v.findViewById(R.id.cardview)
+        var name: AppCompatTextView = v.findViewById(R.id.Name)
+        var avatar: AppCompatImageView = v.findViewById(R.id.avatar)
+        var status: AppCompatImageView = v.findViewById(R.id.status)
+        var send: AppCompatImageView = v.findViewById(R.id.sendRequest)
+
     }
 
 }
+

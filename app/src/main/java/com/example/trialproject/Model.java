@@ -2,48 +2,47 @@ package com.example.trialproject;
 
 
 public class Model {
-    private int image;
-    private String title;
-    private String desc;
-    private String coins;
-    public Model(int image, String title, String desc,String coins) {
-        this.image = image;
-        this.title = title;
-        this.desc = desc;
-        this.coins = coins;
+    private String name;
+    private int status,avatar,send;
+
+    public Model(String name, int status, int avatar, int send) {
+        this.name = name;
+        this.status = status;
+        this.avatar = avatar;
+        this.send = send;
     }
 
-
-    public int getImage() {
-        return image;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-    public String getTitle() {
-        return title;
+    public void setAvatar(int avatar) {
+        this.avatar = avatar;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setSend(int send) {
+        this.send = send;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getName() {
+        return name;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public int getStatus() {
+        return status;
     }
 
-    public String getCoins() {
-        return coins;
+    public int getAvatar() {
+        return avatar;
     }
 
-    public void setCoins(String coins) {
-        this.coins = coins;
+    public int getSend() {
+        return send;
     }
-
 }
+
+
