@@ -38,6 +38,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation group: 'com.airbnb.android', name:'lottie', version: '2.5.1'
 }
 repositories {
     mavenCentral()
